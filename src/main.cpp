@@ -29,10 +29,19 @@ public:
             return true;
         }
 
+        auto size = Mod::get()->getSettingValue<int64_t>("shimeji-size");
+        float scale = static_cast<float>(size) / 100.0f;
+
+        sprite->setScale(scale);
         sprite->setPosition({100.f, 100.f});
+
         this->addChild(sprite);
 
-        log::info("Test Shimeji sprite loaded successfully!");
+        log::info(
+            "Test Shimeji sprite loaded successfully! Size: {}% (scale: {})",
+            size,
+            scale
+        );
 
         return true;
     }
