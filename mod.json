@@ -8,12 +8,33 @@
     "version": "v0.1.0",
     "developer": "DarkTubbie",
     "description": "A native Geode mod for visual Shimejis in Geometry Dash.",
+
     "dependencies": {
         "geode.node-ids": ">=v1.23.3"
     },
+
     "resources": {
         "sprites": [
             "resources/shimeji/test.png"
         ]
+    },
+
+    "settings": {
+        "shimeji-size": {
+            "name": "Tamaño del Shimeji",
+            "description": "Controla el tamaño del Shimeji en porcentaje.",
+            "type": "int",
+            "default": 100,
+            "min": 1,
+            "max": 1000,
+            "control": {
+                "arrows": true,
+                "arrow-step": 10,
+                "big-arrows": true,
+                "big-arrow-step": 50,
+                "slider": false,
+                "input": true
+            }
+        }
     }
 }
