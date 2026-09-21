@@ -3,14 +3,9 @@
     "gd": {
         "android": "2.2081"
     },
-    "id": "darktubbie.geode-rpc-test",
-    "name": "Geode RPC Test",
+    "id": "darktubbie.geode-shimeji-test",
+    "name": "Geode Shimeji Test",
     "version": "v0.1.0",
     "developer": "DarkTubbie",
-    "description": "Minimal Geode Android test mod for the Discord Rich Presence project.",
-    "resources": {
-        "files": [
-            "resources/libdiscord_partner_sdk.so"
-        ]
-    }
+    "description": "A native Geode mod for visual Shimejis in Geometry Dash."
 }
