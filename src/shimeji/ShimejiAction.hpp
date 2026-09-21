@@ -21,3 +21,5 @@ struct ShimejiAction {
     std::string borderType;
     ShimejiAnimation animation;
 };
+
+std::vector<ShimejiAction> loadActions(std::string const& path);
