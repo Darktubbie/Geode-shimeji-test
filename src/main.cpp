@@ -37,6 +37,12 @@ public:
 
         this->addChild(sprite);
 
+        m_sprite = sprite;
+        m_speed = 80.f;
+        m_direction = 1.f;
+
+        this->scheduleUpdate();
+
         log::info(
             "Test Shimeji sprite loaded successfully! Size: {}% (scale: {})",
             size,
@@ -45,6 +51,38 @@ public:
 
         return true;
     }
+
+    void update(float dt) override {
+        if (!m_sprite) {
+            return;
+        }
+
+        auto position = m_sprite->getPosition();
+
+        position.x += m_speed * m_direction * dt;
+
+        auto screenSize = CCDirector::sharedDirector()->getWinSize();
+
+        float halfWidth = m_sprite->getContentSize().width *
+            m_sprite->getScaleX() / 2.0f;
+
+        if (position.x + halfWidth >= screenSize.width) {
+            position.x = screenSize.width - halfWidth;
+            m_direction = -1.f;
+        }
+        else if (position.x - halfWidth <= 0.f) {
+            position.x = halfWidth;
+            m_direction = 1.f;
+        }
+
+        m_sprite->setPosition(position);
+    }
+
+private:
+    CCSprite* m_sprite = nullptr;
+
+    float m_speed = 80.f;
+    float m_direction = 1.f;
 };
 
 $on_mod(Loaded) {
