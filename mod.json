@@ -10,5 +10,10 @@
     "description": "A native Geode mod for visual Shimejis in Geometry Dash.",
     "dependencies": {
         "geode.node-ids": ">=v1.23.3"
+    },
+    "resources": {
+        "sprites": [
+            "resources/shimeji/test.png"
+        ]
     }
 }
