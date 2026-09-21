@@ -22,17 +22,17 @@ public:
             return false;
         }
 
-        auto sprite = CCSprite::create("shimeji/test.png");
+        auto sprite = CCSprite::create("test.png"_spr);
 
         if (!sprite) {
-            log::error("Failed to load shimeji/test.png");
+            log::error("Failed to load test.png");
             return true;
         }
 
         sprite->setPosition({100.f, 100.f});
         this->addChild(sprite);
 
-        log::info("Test Shimeji sprite loaded!");
+        log::info("Test Shimeji sprite loaded successfully!");
 
         return true;
     }
