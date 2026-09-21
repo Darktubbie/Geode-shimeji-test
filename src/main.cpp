@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 #include <Geode/ui/OverlayManager.hpp>
+#include "shimeji/ShimejiAction.hpp"
 
 using namespace geode::prelude;
 
@@ -87,6 +88,20 @@ private:
 
 $on_mod(Loaded) {
     log::info("Geode Shimeji Test loaded!");
+
+    auto actions = loadActions(
+    Mod::get()->getResourcesDir() /
+    "shimeji/Natsuki/conf/actions.xml"
+);
+
+for (auto const& action : actions) {
+    log::info(
+        "Action: {} | Type: {} | Poses: {}",
+        action.name,
+        action.type,
+        action.animation.poses.size()
+    );
+}
 
     auto layer = ShimejiLayer::create();
 
