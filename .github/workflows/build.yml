@@ -27,5 +27,5 @@ jobs:
       - name: Upload Geode mod
         uses: actions/upload-artifact@v4
         with:
-          name: Geode-RPC-test-Android64
+          name: Geode-shimeji-test-Android64
           path: ${{ steps.build.outputs.build-output }}
