@@ -31,7 +31,7 @@ public:
         sprite->setPosition({100.f, 100.f});
         this->addChild(sprite);
 
-        log::info("Test Shimeji loaded successfully!");
+        log::info("=== SHIMEJI BUILD TEST 2026 ===");
 
         return true;
     }
