@@ -2,14 +2,16 @@
 
 #include <Geode/Geode.hpp>
 
+#include <filesystem>
 #include <string>
 #include <vector>
 
 struct ShimejiDefinition {
     std::string name;
-    std::string directory;
-    std::string actionsFile;
-    std::string behaviorsFile;
+
+    std::filesystem::path directory;
+    std::filesystem::path actionsFile;
+    std::filesystem::path behaviorsFile;
 };
 
 class ShimejiManager {
