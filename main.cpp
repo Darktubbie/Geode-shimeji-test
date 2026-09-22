@@ -38,7 +38,7 @@ public:
 };
 
 $on_mod(Loaded) {
-    log::info("Geode Shimeji Test loaded!");
+    log::info("=== SHIMEJI BUILD TEST 2026 ===");
 
     auto scene = CCDirector::sharedDirector()->getRunningScene();
 
