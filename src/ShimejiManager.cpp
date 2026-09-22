@@ -12,16 +12,42 @@ void ShimejiManager::scan() {
 
     auto base = dirs::getModConfigDir() / "shimejis";
 
-    log::info("[Shimeji] Scanning: {}", base.string());
+    log::info(
+        "[Shimeji] Scanning custom Shimejis: {}",
+        base.string()
+    );
 
     if (!std::filesystem::exists(base)) {
-        log::info("[Shimeji] Creating shimejis directory");
+        log::info(
+            "[Shimeji] Shimejis directory does not exist. Creating it..."
+        );
 
-        std::filesystem::create_directories(base);
+        std::error_code error;
+        std::filesystem::create_directories(base, error);
+
+        if (error) {
+            log::error(
+                "[Shimeji] Failed to create shimejis directory: {}",
+                error.message()
+            );
+        }
+
         return;
     }
 
-    for (auto const& entry : std::filesystem::directory_iterator(base)) {
+    std::error_code error;
+
+    for (auto const& entry :
+         std::filesystem::directory_iterator(base, error)) {
+
+        if (error) {
+            log::error(
+                "[Shimeji] Failed to enumerate directory: {}",
+                error.message()
+            );
+            break;
+        }
+
         if (!entry.is_directory()) {
             continue;
         }
@@ -49,24 +75,27 @@ void ShimejiManager::scan() {
             continue;
         }
 
-        ShimejiDefinition definition{
-            name,
-            directory.string(),
-            actions.string(),
-            behaviors.string()
-        };
+        ShimejiDefinition definition;
+        definition.name = name;
+        definition.directory = directory;
+        definition.actionsFile = actions;
+        definition.behaviorsFile = behaviors;
 
         m_shimejis.push_back(std::move(definition));
 
-        log::info("[Shimeji] Found: {}", name);
+        log::info(
+            "[Shimeji] Found custom Shimeji: {}",
+            name
+        );
     }
 
     log::info(
-        "[Shimeji] Scan complete: {} Shimeji(s)",
+        "[Shimeji] Custom Shimeji scan complete: {} found",
         m_shimejis.size()
     );
 }
 
-std::vector<ShimejiDefinition> const& ShimejiManager::getShimejis() const {
+std::vector<ShimejiDefinition> const&
+ShimejiManager::getShimejis() const {
     return m_shimejis;
 }
